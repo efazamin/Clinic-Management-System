@@ -1,0 +1,67 @@
+﻿@model IEnumerable<BLL.DTOs.DoctorDTO>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Doctor List</h1>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+</p>
+
+<table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Fee</th>
+            <th>Specialization</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Phone</td>
+                <td>@item.Email</td>
+                <td>@item.Fee</td>
+                <td>@item.SpecializationName</td>
+
+                <td>
+                    <a href="/Doctor/Edit/@item.Id" class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a href="/Doctor/Delete/@item.Id" class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
